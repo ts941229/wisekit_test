@@ -1,9 +1,12 @@
 package com.wisekit.test.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
@@ -18,18 +21,25 @@ import lombok.Getter;
 public class Entry {
 
 	@Builder(toBuilder = true)
-	protected Entry(long id, long user_id, long event_id, String entry_date) {
+	protected Entry(long id, Member member, Event event, String entry_date) {
 		this.id = id;
-		this.user_id = user_id;
-		this.event_id = event_id;
+		this.member = member;
+		this.event = event;
 		this.entry_date = entry_date;
 	}
 	
 	@Id
 	@GeneratedValue(generator = "entry_seq_generator", strategy = GenerationType.IDENTITY)
 	private long id;
-	private long user_id;
-	private long event_id;
+	
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "member_id")
+	private Member member;
+	
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "event_id")
+	private Event event;
+	
 	private String entry_date;
 	
 }

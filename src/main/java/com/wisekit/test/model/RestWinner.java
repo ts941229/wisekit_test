@@ -1,9 +1,12 @@
 package com.wisekit.test.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
@@ -18,10 +21,10 @@ import lombok.Getter;
 public class RestWinner {
 	
 	@Builder(toBuilder = true)
-	protected RestWinner(long id, long event_id, int first_place, int second_place, int third_place, int fourth_place,
+	protected RestWinner(long id, Event event, int first_place, int second_place, int third_place, int fourth_place,
 			int fifth_place) {
 		this.id = id;
-		this.event_id = event_id;
+		this.event = event;
 		this.first_place = first_place;
 		this.second_place = second_place;
 		this.third_place = third_place;
@@ -32,7 +35,11 @@ public class RestWinner {
 	@Id
 	@GeneratedValue(generator = "rest_winner_seq_generator", strategy = GenerationType.IDENTITY)
 	private long id;
-	private long event_id;
+	
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "event_id")
+	private Event event;
+	
 	private int first_place;
 	private int second_place;
 	private int third_place;
