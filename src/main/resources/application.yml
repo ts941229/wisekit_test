@@ -1,0 +1,25 @@
+server:
+  port: 9091
+  
+#thymeleaf  
+spring:
+  thymeleaf:
+    cache: false
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+#dbms
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: wisekit
+    password: 1234
+
+    
+#jpa
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create

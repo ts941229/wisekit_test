@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
+<th:block th:replace="/fragments/header.html :: fragment-header"/>
+
+<body>
+	
+	<h1>WISE:KIT 이벤트 페이지</h1>	
+
+	<button id="event_entry">응모하기</button>
+
+<script>
+	$("#event_entry").on("click", function(){
+		console.log("클릭했어요");
+	});
+	
+</script>
+</body>
+</html>
