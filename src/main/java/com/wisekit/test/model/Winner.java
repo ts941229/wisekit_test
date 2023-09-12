@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @SequenceGenerator(allocationSize = 1
@@ -18,6 +19,7 @@ import lombok.Getter;
 								, name = "winner_seq_generator"
 								, sequenceName = "winner_seq")
 @Getter
+@NoArgsConstructor
 public class Winner {
 	
 	@Builder(toBuilder = true)

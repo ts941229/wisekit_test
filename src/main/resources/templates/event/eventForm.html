@@ -11,7 +11,9 @@
 
 <script>
 	$("#event_entry").on("click", function(){
-		console.log("클릭했어요");
+		if(confirm("응모하시겠습니까?")){
+			location.href="/event/event-entry";
+		}
 	});
 	
 </script>

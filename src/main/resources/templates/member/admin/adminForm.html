@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- head -->
+<th:block th:replace="/fragments/header.html :: fragment-header"/>
+
+<body>
+
+	<h1>WISE:KIT 관리자 페이지</h1>	
+	
+	<button id="create_event">이벤트 생성</button>
+
+	<br/>
+	<br/>
+
+	<button id="event_end">당일 응모 종료</button>
+	
+<script>
+	$("#create_event").on("click", function(){
+		if(confirm("이벤트를 생성하시겠습니까?")){
+			location.href="/event/event-create";
+		}
+	});
+	
+	$("#event_end").on("click", function(){
+		if(confirm("오늘의 이벤트 응모를 종료하시겠습니까?")){
+			location.href="/event/event-end";
+		}
+	});
+	
+	
+	
+</script>
+</body>
+</html>

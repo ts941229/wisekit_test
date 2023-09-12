@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @SequenceGenerator(allocationSize = 1
@@ -18,10 +19,11 @@ import lombok.Getter;
 								, name = "rest_winner_seq_generator"
 								, sequenceName = "rest_winner_seq")
 @Getter
-public class RestWinner {
+@NoArgsConstructor
+public class RemainingWinner {
 	
 	@Builder(toBuilder = true)
-	protected RestWinner(long id, Event event, int first_place, int second_place, int third_place, int fourth_place,
+	protected RemainingWinner(long id, Event event, int first_place, int second_place, int third_place, int fourth_place,
 			int fifth_place) {
 		this.id = id;
 		this.event = event;

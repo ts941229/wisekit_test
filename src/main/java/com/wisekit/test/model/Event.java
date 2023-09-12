@@ -8,6 +8,7 @@ import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @SequenceGenerator(allocationSize = 1
@@ -15,6 +16,7 @@ import lombok.Getter;
 								, name = "event_seq_generator"
 								, sequenceName = "event_seq")
 @Getter
+@NoArgsConstructor
 public class Event {
 	
 	@Builder(toBuilder = true)
