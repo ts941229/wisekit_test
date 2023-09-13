@@ -23,15 +23,13 @@ import lombok.NoArgsConstructor;
 public class RemainingWinner {
 	
 	@Builder(toBuilder = true)
-	protected RemainingWinner(long id, Event event, int first_place, int second_place, int third_place, int fourth_place,
-			int fifth_place) {
+	protected RemainingWinner(long id, Event event, int first_place, int second_place, int third_place, int fourth_place) {
 		this.id = id;
 		this.event = event;
 		this.first_place = first_place;
 		this.second_place = second_place;
 		this.third_place = third_place;
 		this.fourth_place = fourth_place;
-		this.fifth_place = fifth_place;
 	}
 	
 	@Id
@@ -46,6 +44,5 @@ public class RemainingWinner {
 	private int second_place;
 	private int third_place;
 	private int fourth_place;
-	private int fifth_place;
 	
 }
