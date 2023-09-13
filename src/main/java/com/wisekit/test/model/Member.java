@@ -1,9 +1,13 @@
 package com.wisekit.test.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
@@ -30,5 +34,8 @@ public class Member {
 	private long id;
 	
 	private String name;
+	
+	@OneToMany(mappedBy = "member")
+	List<Entry> entries = new ArrayList<Entry>();
 	
 }

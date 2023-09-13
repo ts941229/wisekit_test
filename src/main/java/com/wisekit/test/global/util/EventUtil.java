@@ -19,13 +19,8 @@ public class EventUtil {
 	// 등수 별 하루 평균 당첨자 리턴하는 함수
 	public int getDailyEverage(int remaining_winner, int remaining_duration){
 		
-		System.out.println("remaining_winner : "+remaining_winner);
-		System.out.println("remaining_duration : "+remaining_duration);
-		
 		// 하루 평균 당첨자 = 남은 당첨자 / 남은 기간
 		int daily_everage =  (int) Math.floor((remaining_winner / remaining_duration));
-		
-		System.out.println("daily_everage : "+daily_everage);
 		
 		return daily_everage;
 	}
@@ -37,7 +32,6 @@ public class EventUtil {
 		LocalDate end = LocalDate.parse(end_date);
 		
 		int remaining_duration = ((int)ChronoUnit.DAYS.between(cur, end))+1;
-		System.out.println("남은 기간 : "+remaining_duration);
 		
 		return remaining_duration; // +1 하는 이유 : 마지막날도 이벤트 하기 때문에
 	}

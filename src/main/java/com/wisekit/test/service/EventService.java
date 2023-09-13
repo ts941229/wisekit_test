@@ -2,9 +2,11 @@ package com.wisekit.test.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.wisekit.test.global.util.EventUtil;
 import com.wisekit.test.global.util.Util;
@@ -193,7 +195,18 @@ public class EventService {
 			.build();
 		
 		remainingWinnerRepository.save(rw);
+	}
+	
+	// 당첨자 화면단 렌더링
+	public void eventWinnerRender(Model model) {
+		
+		String today = Util.getInstance().dateFormat(LocalDate.now());
+		
+		// 당일 등수별 당첨자 구하기
+		List<Member> first_member_list = memberRepository.findAllByEntryDateAndRank(today, 1);
+		System.out.println("오늘의 1등 당첨자 수 : "+first_member_list.size());
 		
 	}
+	
 	
 }

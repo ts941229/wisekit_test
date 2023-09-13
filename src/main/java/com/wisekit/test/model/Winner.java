@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
@@ -33,7 +34,7 @@ public class Winner {
 	@GeneratedValue(generator = "winner_seq_generator", strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@OneToOne
 	@JoinColumn(name = "entry_id")
 	private Entry entry;
 	
