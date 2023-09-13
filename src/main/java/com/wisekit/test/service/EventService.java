@@ -121,17 +121,11 @@ public class EventService {
 		int evg_second = EventUtil.getInstance().getDailyEverage(rw.getSecond_place(), rd);
 		int evg_third = EventUtil.getInstance().getDailyEverage(rw.getThird_place(), rd);
 		
-		System.out.println("evg_first : "+evg_first);
-		System.out.println("evg_second : "+evg_second);
-		System.out.println("evg_third : "+evg_third);
-		
 		// 1, 2, 3등의 당일 평균 당첨자 만큼 당첨자를 선별하고, 나머지 응모자는 4등처리
 		// 추첨은 당일 총 응모자수를 구한 후, 당첨자를 선별한다
 		
 		// 당일 총 응모자 수
 		int daily_total_entry = (int) entryRepository.countByEntryDateAndEventId(today, (long) 1);
-		
-		System.out.println("당일 총 응모자 수 :"+ daily_total_entry);
 		
 		// 당일 총 응모자 수에 따른 당첨자 배열 받기
 		int[] daily_total_winner = EventUtil.getInstance().getDailyTotalWinner(daily_total_entry);
@@ -183,11 +177,22 @@ public class EventService {
 				
 			}
 		}
-
-		// 
-		
 		
 		// 당일 이벤트 종료시 RemainingWinner (등수별 총 남은 당첨자 수) 값 최신화 
+		// 총 남은 당첨자 수 - 오늘의 당첨자 수
+		int remaining_first = rw.getFirst_place() - winnerRepository.countByRankAndEntryDate(1, today);
+		int remaining_second = rw.getSecond_place() - winnerRepository.countByRankAndEntryDate(2, today);
+		int remaining_third = rw.getThird_place() - winnerRepository.countByRankAndEntryDate(3, today);
+		int remaining_fourth = rw.getFourth_place() - winnerRepository.countByRankAndEntryDate(4, today);
+		
+		rw = rw.toBuilder()
+			.first_place(remaining_first)
+			.second_place(remaining_second)
+			.third_place(remaining_third)
+			.fourth_place(remaining_fourth)
+			.build();
+		
+		remainingWinnerRepository.save(rw);
 		
 	}
 	
