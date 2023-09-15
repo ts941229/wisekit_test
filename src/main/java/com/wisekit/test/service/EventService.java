@@ -200,11 +200,32 @@ public class EventService {
 	// 당첨자 화면단 렌더링
 	public void eventWinnerRender(Model model) {
 		
+		// 당일 1등 당첨자 수 구해왔으니 나머지 등수도 구해서 화면에 뿌려줘야함
+		// 가능하면 등수별 총 당첨자도 가져오면 좋음
+		
 		String today = Util.getInstance().dateFormat(LocalDate.now());
 		
 		// 당일 등수별 당첨자 구하기
-		List<Member> first_member_list = memberRepository.findAllByEntryDateAndRank(today, 1);
-		System.out.println("오늘의 1등 당첨자 수 : "+first_member_list.size());
+		List<Member> daily_first_member_list = memberRepository.findAllByEntryDateAndRank(today, 1);
+		List<Member> daily_second_member_list = memberRepository.findAllByEntryDateAndRank(today, 2);
+		List<Member> daily_third_member_list = memberRepository.findAllByEntryDateAndRank(today, 3);
+		List<Member> daily_fourth_member_list = memberRepository.findAllByEntryDateAndRank(today, 4);
+
+		model.addAttribute("daily_first_member_list", daily_first_member_list);
+		model.addAttribute("daily_second_member_list", daily_second_member_list);
+		model.addAttribute("daily_third_member_list", daily_third_member_list);
+		model.addAttribute("daily_fourth_member_list", daily_fourth_member_list);
+
+		// 총 등수별 당첨자 구하기
+		List<Member> total_first_member_list = memberRepository.findAllByRank(1);
+		List<Member> total_second_member_list = memberRepository.findAllByRank(2);
+		List<Member> total_third_member_list = memberRepository.findAllByRank(3);
+		List<Member> total_fourth_member_list = memberRepository.findAllByRank(4);
+		
+		model.addAttribute("total_first_member_list", total_first_member_list);
+		model.addAttribute("total_second_member_list", total_second_member_list);
+		model.addAttribute("total_third_member_list", total_third_member_list);
+		model.addAttribute("total_fourth_member_list", total_fourth_member_list);
 		
 	}
 	

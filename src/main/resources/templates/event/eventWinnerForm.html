@@ -7,17 +7,76 @@
 	
 	<h1>WISE:KIT 당첨자 페이지</h1>	
 	
+	<a href="/">메인페이지</a>
+	<br/>
+	<br/>
 	
-	<table>
+	<label for="winner_today" style="font-size: large; font-weight: bold;">오늘의 당첨자</label>
+	<table border="1" id="winner_today" >
+		<tr>
+			<th>1등</th>
+			<th:block th:each="daily_first_member : ${daily_first_member_list}">
+				<td th:text="${daily_first_member.id}"></td>			
+			</th:block>			
+		</tr>
+
+		<tr>
+			<th>2등</th>			
+			<th:block th:each="daily_second_member : ${daily_second_member_list}">
+				<td th:text="${daily_second_member.id}"></td>			
+			</th:block>			
+		</tr>
+		
+		<tr>
+			<th>3등</th>			
+			<th:block th:each="daily_third_member : ${daily_third_member_list}">
+				<td th:text="${daily_third_member.id}"></td>			
+			</th:block>			
+		</tr>
+			
+		<tr>
+			<th>4등</th>			
+			<th:block th:each="daily_fourth_member : ${daily_fourth_member_list}">
+				<td th:text="${daily_fourth_member.id}"></td>			
+			</th:block>			
+		</tr>
+		
+	</table>
+	
+	<br/>
+	
+	<label for="winner_total" style="font-size: large; font-weight: bold;">총 당첨자</label>
+	<table border="1" id="winner_total" >
+		<tr>
+			<th>1등</th>
+			<th:block th:each="total_first_member : ${total_first_member_list}">
+				<td th:text="${total_first_member.id}"></td>			
+			</th:block>			
+						
+		</tr>
+
+		<tr>
+			<th>2등</th>			
+			<th:block th:each="total_second_member : ${total_second_member_list}">
+				<td th:text="${total_second_member.id}"></td>			
+			</th:block>			
+		</tr>
+		
+		<tr>
+			<th>3등</th>			
+			<th:block th:each="total_third_member : ${total_third_member_list}">
+				<td th:text="${total_third_member.id}"></td>			
+			</th:block>			
+		</tr>
+			
+		<tr>
+			<th>4등</th>			
+			<th:block th:each="total_fourth_member : ${total_fourth_member_list}">
+				<td th:text="${total_fourth_member.id}"></td>			
+			</th:block>			
+		</tr>
+		
 	</table>
 
-<script>
-	$("#event_entry").on("click", function(){
-		if(confirm("응모하시겠습니까?")){
-			location.href="/event/event-entry";
-		}
-	});
-	
-</script>
 </body>
 </html>

@@ -7,12 +7,22 @@
 
 	<h1>WISE:KIT 관리자 페이지</h1>	
 	
+	<a href="/">메인페이지</a>
+	
+	<br/>
+	<br/>
+	
 	<button id="create_event">이벤트 생성</button>
 
 	<br/>
 	<br/>
 
 	<button id="event_end">당일 응모 종료</button>
+
+	<br/>
+	<br/>
+	
+	<button id="display_winner">당첨자 보기</button>
 	
 <script>
 	$("#create_event").on("click", function(){
@@ -24,6 +34,12 @@
 	$("#event_end").on("click", function(){
 		if(confirm("오늘의 이벤트 응모를 종료하시겠습니까?")){
 			location.href="/event/event-end";
+		}
+	});
+	
+	$("#display_winner").on("click", function(){
+		if(confirm("당첨자 페이지로 이동하시겠습니까?")){
+			location.href="/event/event-winner-form";
 		}
 	});
 	

@@ -35,14 +35,14 @@ public class EventController {
 	@GetMapping("/event-entry")
 	public String eventEntry() {
 		
-		eventService.eventEntry();
+		eventService.eventEntry(); // 응모와 동시에 유저 생성 , 해당 유저에 대한 응모정보 생성
 		
 		return "redirect:/event/event-form";
 	}
 	
 	@GetMapping("/event-end")
 	public String endEventOfTheDay() {
-		eventService.endEventOfTheDay();
+		eventService.endEventOfTheDay(); // 당일 응모 종료시 처리해야 할 것들 처리해주는 메소드
 
 		return "redirect:/member/admin/admin-form";
 	}
@@ -50,7 +50,7 @@ public class EventController {
 	@GetMapping("/event-winner-form")
 	public String eventWinnerForm(Model model) {
 		
-		eventService.eventWinnerRender(model);
+		eventService.eventWinnerRender(model); // 화면단에 당첨자 넘겨주는 메소드
 		
 		return "/event/eventWinnerForm";
 	}
