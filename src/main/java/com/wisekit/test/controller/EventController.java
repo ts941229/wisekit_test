@@ -35,7 +35,12 @@ public class EventController {
 	@GetMapping("/event-entry")
 	public String eventEntry() {
 		
-		eventService.eventEntry(); // 응모와 동시에 유저 생성 , 해당 유저에 대한 응모정보 생성
+		// 응모와 동시에 유저 생성 , 해당 유저에 대한 응모정보 생성
+		for(int i=0; i<100; i++) {
+			// 100명 응모
+			eventService.eventEntry();
+		}
+		 
 		
 		return "redirect:/event/event-form";
 	}
