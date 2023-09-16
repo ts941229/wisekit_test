@@ -12,14 +12,18 @@
 	<br/>
 	<button id="event_entry">응모하기</button>
 	
-
+	<th:block th:if="${rank!=null}">
+		<script>
+			alert("[[${rank}]]등입니다.");
+		</script>
+	</th:block>
+	
 <script>
 	$("#event_entry").on("click", function(){
 		if(confirm("응모하시겠습니까?")){
 			location.href="/event/event-entry";
 		}
 	});
-	
 </script>
 </body>
 </html>

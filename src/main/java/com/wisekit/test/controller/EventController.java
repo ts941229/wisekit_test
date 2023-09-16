@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wisekit.test.repository.MemberRepository;
 import com.wisekit.test.service.EventService;
@@ -33,25 +34,15 @@ public class EventController {
 	}
 	
 	@GetMapping("/event-entry")
-	public String eventEntry() {
+	public String eventEntry(RedirectAttributes redirectAttributes) {
 		
-		// 응모와 동시에 유저 생성 , 해당 유저에 대한 응모정보 생성
-		for(int i=0; i<100; i++) {
-			// 100명 응모
-			eventService.eventEntry();
-		}
-		 
+		// 응모와 동시에 유저 생성 , 해당 유저에 대한 응모정보 생성 , 당첨 순위 반환
+		int rank = eventService.eventEntry();
+		redirectAttributes.addFlashAttribute("rank", rank);
 		
 		return "redirect:/event/event-form";
 	}
 	
-	@GetMapping("/event-end")
-	public String endEventOfTheDay() {
-		eventService.endEventOfTheDay(); // 당일 응모 종료시 처리해야 할 것들 처리해주는 메소드
-
-		return "redirect:/member/admin/admin-form";
-	}
-
 	@GetMapping("/event-winner-form")
 	public String eventWinnerForm(Model model) {
 		
@@ -59,5 +50,13 @@ public class EventController {
 		
 		return "/event/eventWinnerForm";
 	}
+	
+	
+//	@GetMapping("/event-end")
+//	public String endEventOfTheDay() {
+//		eventService.endEventOfTheDay(); // 당일 응모 종료시 처리해야 할 것들 처리해주는 메소드
+//
+//		return "redirect:/member/admin/admin-form";
+//	}
 	
 }
